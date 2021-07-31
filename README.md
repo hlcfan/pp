@@ -7,7 +7,7 @@ pp is a simple printer for Golang.
 ## Install
 
 ```shell
-go get github.com/hlcfan/pp@0.2.0
+go get github.com/hlcfan/pp@v0.2.0
 ```
 
 ## Usage

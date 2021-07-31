@@ -81,18 +81,28 @@ func TestPuts(t *testing.T) {
 	})
 
 	t.Run("map", func(t *testing.T) {
-		// t.Skip()
 		var output bytes.Buffer
 		pp.SetOutput(&output)
 
 		m := map[string]string{"foo": "bar", "hello": "world"}
 		pp.Puts(m)
 		got := output.String()
-		expected := "map[string]string {\n    foo:   bar,\n    hello: world,\n}\n"
-		// fmt.Printf("=Got: %#v\n", got)
-		// fmt.Printf("=Exp: %#v\n", expected)
-		if got != expected {
-			t.Errorf("Expect: %s, but got: %s", expected, got)
+
+		pass := false
+		expected := []string{
+			"map[string]string {\n    foo:   bar,\n    hello: world,\n}\n",
+			"map[string]string {\n    hello: world,\n    foo:   bar,\n}\n",
+		}
+
+		for _, exp := range expected {
+			if got == exp {
+				pass = true
+				break
+			}
+		}
+
+		if !pass {
+			t.Errorf("Expect one of: %v, but got: %s", expected, got)
 		}
 	})
 

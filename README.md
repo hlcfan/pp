@@ -22,7 +22,7 @@ pp.Puts(variable)
 
 ```go
 var output bytes.Buffer
-pp.SetOutput()
+pp.SetOutput(&output)
 ```
 
 **Print with label**
